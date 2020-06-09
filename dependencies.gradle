@@ -34,6 +34,8 @@ ext {
     //Lifecycle Extensions
     lifecyleVersion = '2.0.0'
 
+    roomVersion = '2.2.5'
+
     appDependencies = [
             kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
             appCompat       : "androidx.appcompat:appcompat:$appCompatVersion",
@@ -53,7 +55,11 @@ ext {
             navUIKtx        : "androidx.navigation:navigation-ui-ktx:$navigationVersion",
             lifecycleExt    : "androidx.lifecycle:lifecycle-extensions:$lifecyleVersion",
             dagger          : "com.google.dagger:dagger:$daggerVersion",
-            daggerCompiler  : "com.google.dagger:dagger-compiler:$daggerVersion"
+            daggerCompiler  : "com.google.dagger:dagger-compiler:$daggerVersion",
+            daggerAndroid   : "com.google.dagger:dagger-android:$daggerVersion",
+            daggerProcessor : "com.google.dagger:dagger-android-processor:$daggerVersion",
+            room            : "androidx.room:room-runtime:$roomVersion",
+            roomCompiler    : "androidx.room:room-compiler:$roomVersion"
 
     ]
 }

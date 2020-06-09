@@ -56,9 +56,13 @@ dependencies {
     implementation appDependencies.httpLogger
     implementation appDependencies.picasso
     implementation appDependencies.rxJavaAdapter
-    api appDependencies.dagger
+    implementation appDependencies.dagger
     kapt appDependencies.daggerCompiler
+    implementation appDependencies.daggerAndroid
+    kapt appDependencies.daggerProcessor
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-alpha03'
+    implementation appDependencies.room
+    kapt appDependencies.roomCompiler
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
