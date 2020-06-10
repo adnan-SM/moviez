@@ -1,6 +1,6 @@
 package com.moviez.app.api
 
-import com.moviez.app.Result
+import com.moviez.app.utils.Result
 import retrofit2.Response
 
 /**

@@ -1,10 +1,10 @@
 package com.moviez.app.repository
 
 import androidx.lifecycle.LiveData
-import com.moviez.app.*
 import com.moviez.app.api.LocalDataSource
 import com.moviez.app.api.RemoteDataSource
 import com.moviez.app.model.MovieSearchResponse.Movie
+import com.moviez.app.utils.Result
 import com.moviez.app.utils.resultLiveData
 import javax.inject.Inject
 import javax.inject.Singleton

@@ -1,7 +1,7 @@
 package com.moviez.app.repository
 
 import androidx.lifecycle.LiveData
-import com.moviez.app.Result
+import com.moviez.app.utils.Result
 import com.moviez.app.model.MovieSearchResponse.Movie
 
 /**

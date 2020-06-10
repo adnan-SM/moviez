@@ -1,15 +1,11 @@
-package com.moviez.app
+package com.moviez.app.ui
 
 import androidx.lifecycle.*
 import com.moviez.app.model.MovieSearchResponse.Movie
 import com.moviez.app.model.Page
 import com.moviez.app.repository.MovieRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.moviez.app.utils.Result
 import javax.inject.Inject
-import kotlin.math.max
 
 /**
  * @author adnan

@@ -1,6 +1,6 @@
 package com.moviez.app.di
 
-import com.moviez.app.MainActivity
+import com.moviez.app.ui.MainActivity
 import com.moviez.app.di.scopes.ActivityScope
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

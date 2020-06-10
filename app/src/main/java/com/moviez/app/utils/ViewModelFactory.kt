@@ -1,4 +1,4 @@
-package com.moviez.app
+package com.moviez.app.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

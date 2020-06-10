@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import androidx.recyclerview.widget.RecyclerView
-import com.moviez.app.Result
 import kotlinx.coroutines.Dispatchers
 
 /**
