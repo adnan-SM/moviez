@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Moviez</string>
+    <string name="connection_regained">Connected to Internet</string>
+    <string name="connection_lost">Lost Internet Connectivity, limited functionality</string>
+    <string name="search_query_hint">Search for any Movie/Tv Show here.....</string>
+    <string name="retry">Retry</string>
+    <string name="default_search_term">FRIENDS</string>
+    <string name="search_here">Search here</string>
 </resources>

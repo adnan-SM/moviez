@@ -1,5 +1,7 @@
 package com.moviez.app.ui
 
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
 import android.view.Window
@@ -9,10 +11,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.moviez.app.R
 import com.moviez.app.utils.Result.Status
 import com.moviez.app.model.Page
 import com.moviez.app.utils.DebounceTextListener
+import com.moviez.app.utils.NetworkReceiver
 import com.moviez.app.utils.hideKeyboard
 import com.moviez.app.utils.onScrollToEnd
 import dagger.android.AndroidInjection
@@ -28,14 +32,19 @@ class MainActivity : AppCompatActivity() {
     private val adapter = MoviesAdapter()
     private var currentPageCount = 1
     private lateinit var mLayoutManager: RecyclerView.LayoutManager
-    private var currentSearchTerm = "FRIENDS"
+    private var currentSearchTerm = getString(R.string.default_search_term)
+
+    private lateinit var receiver: NetworkReceiver
+    private lateinit var parentLayout: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
-        requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
+        requestWindowFeature(Window.FEATURE_NO_TITLE)//will hide the title
         setContentView(R.layout.activity_main)
-        supportActionBar?.hide(); //hide the title bar
+        parentLayout = findViewById(android.R.id.content)
+        supportActionBar?.hide() //hide the title bar
+        registerReceiver() // Register Network Receiver
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[MovieListViewModel::class.java]
 
@@ -50,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         subscribeToUI()
         //Expand the searchView by default
         search_view.setIconifiedByDefault(false)
-        search_view.queryHint = "Search for any Movie/Tv Show here....."
+        search_view.queryHint = getString(R.string.search_query_hint)
         //Set Debounce listener on searchView
         search_view.setOnQueryTextListener(
             DebounceTextListener(this@MainActivity.lifecycle,
@@ -78,9 +87,25 @@ class MainActivity : AppCompatActivity() {
                 Status.LOADING -> progress_bar.visibility = View.VISIBLE
                 Status.ERROR -> {
                     progress_bar.visibility = View.INVISIBLE
-                    //Snackbar.make(this, result.message!!, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(parentLayout, result.message!!, Snackbar.LENGTH_LONG)
+                        .setAction(getString(R.string.retry)) {
+                            viewModel.inputSearchData.postValue(Page(currentSearchTerm, currentPageCount))
+                        }
+                        .show()
                 }
             }
         })
     }
+
+    private fun registerReceiver() {
+        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        receiver = NetworkReceiver()
+        this.registerReceiver(receiver, filter)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        this.unregisterReceiver(receiver)
+    }
+
 }

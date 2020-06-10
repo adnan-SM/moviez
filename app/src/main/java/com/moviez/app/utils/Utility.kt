@@ -20,11 +20,7 @@ fun <X, Y> resultLiveData(dbQuery: () -> LiveData<X>,
 
     return liveData(Dispatchers.IO) {
         emit(Result.loading<X>())
-        val source = dbQuery.invoke().map {
-            Result.success(
-                it
-            )
-        }
+        val source = dbQuery.invoke().map { Result.success(it) }
         emitSource(source)
 
         val responseStatus = ioRequest.invoke()
