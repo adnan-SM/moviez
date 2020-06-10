@@ -29,6 +29,7 @@ import androidx.annotation.NonNull
 import androidx.room.Room
 import com.moviez.app.db.AppDatabase
 import com.moviez.app.db.MovieDao
+import com.moviez.app.db.PageDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -48,5 +49,11 @@ class PersistenceModule {
   @Singleton
   fun provideMovieDao(@NonNull database: AppDatabase): MovieDao {
     return database.movieDao()
+  }
+
+  @Provides
+  @Singleton
+  fun providePageDao(@NonNull database: AppDatabase): PageDao {
+    return database.pageDao()
   }
 }
