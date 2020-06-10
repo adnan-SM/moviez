@@ -1,9 +1,10 @@
-package com.moviez.app
+package com.moviez.app.api.retrofit
 
 /**
  * @author adnan
  * @since  08/06/20
  */
+import com.moviez.app.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 
